@@ -1,14 +1,15 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
+
 const TARGET = process.env.TARGET || '';
 const USER = process.env.USER || '';
 const PASS = process.env.PASS || '';
 
 app.get('*', async (req, res) => {
     try {
-        const finalUrl = `${TARGET}${req.url}`.replace('username=88778851', `username=${USER}`).replace('password=cspro', `password=${PASS}`);
-        const response = await axios.get(finalUrl, { responseType: 'arraybuffer' });
+        const url = `${TARGET}${req.url}`.replace('username=88778851', `username=${USER}`).replace('password=cspro', `password=${PASS}`);
+        const response = await axios.get(url, { responseType: 'arraybuffer' });
         res.set(response.headers);
         res.send(response.data);
     } catch (e) {
