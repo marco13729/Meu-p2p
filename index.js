@@ -9,7 +9,7 @@ const PASS = process.env.PASS || '';
 app.get('*', async (req, res) => {
     try {
         const finalUrl = `${TARGET}${req.url}`.replace('username=88778851', `username=${USER}`).replace('password=cspro', `password=${PASS}`);
-        const response = await axios.get(finalUrl, { responseType: 'arraybuffer', timeout: 10000 });
+        const response = await axios.get(finalUrl, { responseType: 'arraybuffer', timeout: 15000 });
         res.set(response.headers);
         res.send(response.data);
     } catch (e) {
@@ -17,4 +17,6 @@ app.get('*', async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || 3000, () => console.log("SERVIDOR_ONLINE"));
+app.listen(process.env.PORT || 3000, () => {
+    console.log("SERVIDOR_ONLINE");
+});
